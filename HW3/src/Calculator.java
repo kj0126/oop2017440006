@@ -18,7 +18,6 @@ public class Calculator extends JFrame implements ActionListener, KeyListener {
 		
 		setTitle("°è»ê±â");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(300, 500);
 		
 		tf1 = new JTextField();
 		tf1.setEditable(false);
@@ -101,7 +100,7 @@ public class Calculator extends JFrame implements ActionListener, KeyListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+	
 		requestFocus();
 		if (e.getActionCommand() == "C") {
 			lastValue = 0;
@@ -135,14 +134,13 @@ public class Calculator extends JFrame implements ActionListener, KeyListener {
 				tf2.setText(String.valueOf(String.valueOf(Integer.parseInt(tf2.getText()) + lastValue)));
 			}
 		}
-		else {
+		else
 			if (start) {
 				tf2.setText(((JButton)e.getSource()).getText());
 				start = false;
 			}
 			else
 				tf2.setText(tf2.getText() + ((JButton)e.getSource()).getText());
-		}
 		
     }
 
@@ -156,7 +154,7 @@ public class Calculator extends JFrame implements ActionListener, KeyListener {
 			tf1.setText(null);
 			tf2.setText("0");
 		}
-		else if (e.getKeyCode() == KeyEvent.VK_PLUS || (e.getKeyCode() == KeyEvent.VK_EQUALS && e.isShiftDown())) {
+		else if (e.getKeyCode() == KeyEvent.VK_ADD || (e.getKeyCode() == KeyEvent.VK_EQUALS && e.isShiftDown())) {
 			if(!(lastOperator == 1 && start)) {
 				if (lastOperator == 0 || lastOperator == 2)
 					lastValue = Integer.parseInt(tf2.getText());
@@ -165,10 +163,10 @@ public class Calculator extends JFrame implements ActionListener, KeyListener {
 				lastOperator = 1;
 				tf1.setText(tf1.getText() + tf2.getText() + " + ");
 				tf2.setText(String.valueOf(lastValue));
-				start = true;				
+				start = true;	
 			}
 		}
-		else if ((e.getKeyCode() == KeyEvent.VK_EQUALS && !e.isShiftDown()) || e.getKeyCode() == KeyEvent.VK_ENTER) {
+		else if ((e.getKeyCode() == KeyEvent.VK_EQUALS && !e.isShiftDown()) || e.getKeyCode() == KeyEvent.VK_ENTER){
 			if (lastOperator == 1) {
 				lastOperator = 2;
 				start = true;
@@ -181,22 +179,20 @@ public class Calculator extends JFrame implements ActionListener, KeyListener {
 				tf2.setText(String.valueOf(String.valueOf(Integer.parseInt(tf2.getText()) + lastValue)));
 			}
 		}
-		else if (e.getKeyCode() >= KeyEvent.VK_0 && e.getKeyCode() <= KeyEvent.VK_9) {
+		else if (e.getKeyCode() >= KeyEvent.VK_0 && e.getKeyCode() <= KeyEvent.VK_9)
 			if (start) {
 				tf2.setText(String.valueOf(e.getKeyCode() - KeyEvent.VK_0));
 				start = false;
 			}
 			else
 				tf2.setText(tf2.getText() + String.valueOf(e.getKeyCode() - KeyEvent.VK_0));
-		}
-		else if(e.getKeyCode() >= KeyEvent.VK_NUMPAD0 && e.getKeyCode() <= KeyEvent.VK_NUMPAD9) {
+		else if(e.getKeyCode() >= KeyEvent.VK_NUMPAD0 && e.getKeyCode() <= KeyEvent.VK_NUMPAD9)
 			if (start) {
 				tf2.setText(String.valueOf(e.getKeyCode() - KeyEvent.VK_NUMPAD0));
 				start = false;
 			}
 			else
 				tf2.setText(tf2.getText() + String.valueOf(e.getKeyCode() - KeyEvent.VK_NUMPAD0));
-		}
 		
 	}
 
